@@ -51,7 +51,7 @@ class EditPanel extends Component {
     }
 
     if (e.key === 'Enter') {
-      this.props.onConfirm({
+      this.props.onChange({
         ...this.props.note,
         text: this.input.value
       })
@@ -60,7 +60,7 @@ class EditPanel extends Component {
 
   discart = () => this.props.onDiscart()
 
-  delete = () => this.props.onDelete(this.props.note._id)
+  delete = () => this.props.onDelete(this.props.note)
 
   render () {
     if (!this.props.isEditing) return null

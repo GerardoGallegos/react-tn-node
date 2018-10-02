@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import types from 'prop-types'
 import styled from 'styled-components'
 import Editor from './Editor'
 import noop from './noop'
 import Avatar from './Avatar'
+
+const avatar = 'https://ui-avatars.com/api/?background=FF0000&color=fff&size=200&name=J+G&rounded=true'
 
 const NoteBox = styled.div`
   width: 100%;
@@ -25,6 +28,7 @@ const TimeNote = styled.span`
   color: #c5c5c5;
   font-weight: 100;
 `
+
 const Footer = styled.div`
   display: flex;
   justify-content: space-space-between;
@@ -55,14 +59,33 @@ const Body = styled.div`
 class NoteComponent extends Component {
   state = { isEditing: false }
 
+  static propTypes = {
+    // Object Note, { text: '...', createdAt: '' }
+    note: types.object,
+
+    // Username
+    username: types.string,
+
+    // The src of avatar
+    avatar: types.string,
+
+    // Is trigger when the user press enter key
+    // The note Object is passed in param
+    onChange: types.func,
+
+    // Is trigger when the user press remove button
+    // The note Object is passed in param
+    onDelete: types.func
+  }
+
   static defaultProps = {
+    avatar,
     note: {
-      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-      createdAt: 'December 5 2018'
+      text: '',
+      createdAt: ''
     },
-    username: 'Gerardo Gallegos',
-    avatar: 'https://ui-avatars.com/api/?background=FF0000&color=fff&size=200&name=Go+G&rounded=true',
-    onConfirm: noop,
+    username: '',
+    onChange: noop,
     onDelete: noop
   }
 
@@ -76,12 +99,12 @@ class NoteComponent extends Component {
 
   confirm = (note) => {
     this.setState({ isEditing: false })
-    this.props.onConfirm(note)
+    this.props.onChange(note)
   }
 
-  delete = (_id) => {
+  delete = (note) => {
     this.setState({ isEditing: false })
-    this.props.onDelete(_id)
+    this.props.onDelete(note)
   }
 
   render () {
@@ -108,7 +131,7 @@ class NoteComponent extends Component {
           isEditing={isEditing}
           note={note}
           onDiscart={this.discart}
-          onConfirm={this.confirm}
+          onChange={this.confirm}
           onDelete={this.delete}
         />
       </NoteBox>
