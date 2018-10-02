@@ -77,11 +77,15 @@ class EditPanel extends Component {
     }
 
     if (e.key === 'Enter') {
-      this.props.onChange({
-        ...this.props.note,
-        text: this.input.value
-      })
+      this.confirm()
     }
+  }
+
+  confirm = () => {
+    this.props.onChange({
+      ...this.props.note,
+      text: this.input.value
+    })
   }
 
   discart = () => this.props.onDiscart()
@@ -97,8 +101,8 @@ class EditPanel extends Component {
           onKeyDown={this.handleKeyPress}
         />
         <Buttons>
-          <Confirm>OK</Confirm>
-          <Discart>X</Discart>
+          <Confirm onClick={this.confirm}>OK</Confirm>
+          <Discart onClick={this.discart}>X</Discart>
           <Delete onClick={this.delete}>XX</Delete>
         </Buttons>
       </EditBox>
