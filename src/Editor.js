@@ -20,18 +20,44 @@ const Input = styled.textarea`
   margin: 0;
 `
 
-const DeleteBtn = styled.button`
-  width: 40px;
-  border: 0;
-  background-color: #ffdede;
-  color: #cb6c6c;
+const Button = styled.button`
+  width: 35px;
+  border: 1px solid #f1f1f1;
+  border-radius: 3px;
+  background: #FFF;
+  color: #bbafaf;
   cursor: pointer;
   outline: none;
+  transition: background 150ms ease-out;
+  will-change: background;
+`
 
+const Delete = styled(Button)`
   :hover {
-    background: tomato;
+    background: #e24949;
     color: #FFF;
   }
+`
+
+const Confirm = styled(Button)`
+  :hover {
+    background: #524e4e;
+    color: #FFF;
+  }
+`
+
+const Discart = styled(Button)`
+  :hover {
+    background: #ffc107;
+    color: #FFF;
+  }
+`
+
+const Buttons = styled.div`
+  background-color: #FFF;
+  width: 120px;
+  display: flex;
+  justify-content: space-around;
 `
 
 class EditPanel extends Component {
@@ -70,9 +96,11 @@ class EditPanel extends Component {
           ref={input => { this.input = input }}
           onKeyDown={this.handleKeyPress}
         />
-        <DeleteBtn onClick={this.delete}>
-          X
-        </DeleteBtn>
+        <Buttons>
+          <Confirm>OK</Confirm>
+          <Discart>X</Discart>
+          <Delete onClick={this.delete}>XX</Delete>
+        </Buttons>
       </EditBox>
     )
   }
