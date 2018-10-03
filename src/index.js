@@ -80,10 +80,7 @@ class NoteComponent extends Component {
 
   static defaultProps = {
     avatar,
-    note: {
-      text: '',
-      createdAt: ''
-    },
+    note: {},
     username: '',
     onChange: noop,
     onDelete: noop
