@@ -97,9 +97,7 @@ exports[`Should render the note component 1`] = `
     />
     <div
       className="c3"
-    >
-      
-    </div>
+    />
   </div>
   <div
     className="c4"
@@ -111,9 +109,7 @@ exports[`Should render the note component 1`] = `
     </span>
     <span
       className="c6"
-    >
-      
-    </span>
+    />
   </div>
 </div>
 `;
